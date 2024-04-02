@@ -215,7 +215,7 @@ footer a[href]:hover {
     transition: opacity 700ms;
 }
 
-@media screen (max-width: 768px) {
+@media (max-width: 768px) {
     main {
         display: grid;
         grid-template-columns: 1fr;
