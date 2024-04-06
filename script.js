@@ -13,7 +13,7 @@ let pokemonLetraMinuscula = pokemon.toLowerCase();
 
     document.querySelector(
         '#informacoes'
-    ).textContent = 'Informacoes sobre o ' + pokemon;
+    ).textContent = 'Informações sobre o ' + pokemon;
 
     document.querySelector('#pokemon-img').src = response.sprites.front_default;
 })();
