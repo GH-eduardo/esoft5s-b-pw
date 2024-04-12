@@ -160,6 +160,11 @@ img:hover {
     margin-top: 16px;
 }
 
+#evolucao a {
+    text-decoration: none;
+    color: black;
+}
+
 article {
     background-color: #ffc107;
     color: #fff;
@@ -234,7 +239,7 @@ footer a[href]:hover {
     #evolucao figcaption {
         font-size: 16px;
     }
-    
+
     header h1 {
         font-size: 20px;
     }
@@ -254,4 +259,9 @@ footer a[href]:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+main > section,
+main > article {
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
