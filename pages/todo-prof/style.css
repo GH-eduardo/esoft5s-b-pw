@@ -74,6 +74,12 @@ button {
   cursor: pointer;
 }
 
+.editButton {
+  border-radius: 5px;
+  background-color: #676767;
+  align-self: right;
+}
+
 ul {
   list-style: none;
   padding: 0;

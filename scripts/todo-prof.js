@@ -24,9 +24,8 @@ function addTask(event) {
   
   const editButton = document.createElement('button')
   editButton.textContent = '✏️'
-  editButton.style.borderRadius = '5px'
-  editButton.style.backgroundColor = '#676767'
   editButton.title = 'Editar tarefa'
+  editButton.class = 'editButton'
   li.appendChild(editButton)
 
   // Salvar tarefas no localStorage
