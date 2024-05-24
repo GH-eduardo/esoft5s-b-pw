@@ -75,9 +75,12 @@ button {
 }
 
 .editButton {
+  position: absolute;
+  right: 5px;
+  top: 5px;
   border-radius: 5px;
   background-color: #676767;
-  align-self: right;
+  padding: 3px;
 }
 
 ul {
@@ -88,6 +91,7 @@ ul {
 }
 
 li {
+  position: relative;
   margin: 8px 0;
   padding: 20px;
   border: solid 1px #ccc;
