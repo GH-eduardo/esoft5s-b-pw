@@ -21,6 +21,12 @@ function addTask(event) {
   `
 
   taskList.appendChild(li)
+  
+  const editButton = document.createElement('button')
+  editButton.textContent = '✏️'
+  editButton.borderRadius = '5px'
+  editButton.backgroundColor = '#676767';
+  editButton.title = 'Editar tarefa'
 
   // Salvar tarefas no localStorage
   const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
