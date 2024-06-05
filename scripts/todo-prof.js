@@ -15,7 +15,7 @@ function addTask(event) {
   taskList.innerHTML +=
     `<li id="${taskId}"><h2>Título: ${taskTitle}</h2>
     <p>Descrição: ${taskDescription}</p>
-    <button class = "editButton" title = "Editar tarefa" onclick="dialog('${taskId}')">✏️</button>
+    <button class = "editButton" title = "Editar tarefa" onclick="dialog('${taskId}', '${taskTitle}', '${taskDescription}')">✏️</button>
     <button class = "removeButton" title = "Remover tarefa" onclick="remove('${taskId}')">️❌</button>
     </li>`
 
