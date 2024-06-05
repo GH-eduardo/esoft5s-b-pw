@@ -6,7 +6,19 @@ function addDialogToEditButton(start) {
     }
 }
 
-function dialog(taskId) {
+function editTask(taskId, newTitle, newDescription) {
+    const tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
+
+    const taskIndex = tasks.findIndex(task => task.id == taskId);
+
+    tasks[taskIndex].title = newTitle;
+    tasks[taskIndex].description = newDescription;
+
+    localStorage.setItem(taskKey, JSON.stringify(tasks));
+    window.location.reload()
+}
+
+function dialog(taskId, title, description) {
 
     let dialog = document.createElement('dialog')
     let cancelButton = document.createElement('button')
@@ -19,22 +31,30 @@ function dialog(taskId) {
     let saveButton = document.createElement('button')
     saveButton.innerText = 'Salvar'
 
+    dialog.innerHTML = `
+        <form id="editTaskForm">
+            <label for="title">Novo Título: </label>
+            <input type="text" name="title" value="${title}" id="newTitle" style="margin-bottom: 15px;"required>
+            <label for="description">Nova Descrição: </label>
+            <textarea name="description" id="newDescription" required>${description}</textarea>
+        </form>
+    `
+    dialog.style = 'display: flex; flex-direction: column; align-items: center; gap: 10px;'
+
+    saveButton.addEventListener("click", function () {
+        let newTitle = document.querySelector('#newTitle').value
+        let newDescription = document.querySelector('#newDescription').value
+
+        editTask(taskId, newTitle, newDescription)
+        dialog.close();
+        document.querySelector('main').removeChild(dialog)
+        alert('Tarefa editada com sucesso!')
+    });
+
     let div = document.createElement('div')
     div.style = 'margin-top: 10px; display: flex; gap: 10px;'
     div.appendChild(cancelButton)
     div.appendChild(saveButton)
-
-    const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
-
-    dialog.innerHTML = `
-        <form id="editTaskForm">
-            <label for="title"></label>
-            <input type="text" name="title" value="${tasks[taskId].title}" required>
-            <label for="description"></label>
-            <textarea name="description" required>${tasks[taskId].description}</textarea>
-        </form>
-    `
-    dialog.style = 'display: flex; flex-direction: column; align-items: center;'
 
     dialog.appendChild(div)
     dialog.open = false

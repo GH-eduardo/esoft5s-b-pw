@@ -10,28 +10,28 @@ function addTask(event) {
 
   const taskTitle = formData.get('title')
   const taskDescription = formData.get('description')
+  const taskId = new Date().getTime()
 
-  const li = document.createElement('li')
+  taskList.innerHTML +=
+    `<li id="${taskId}"><h2>Título: ${taskTitle}</h2>
+    <p>Descrição: ${taskDescription}</p>
+    <button class = "editButton" title = "Editar tarefa" onclick="dialog('${taskId}')">✏️</button>
+    <button class = "removeButton" title = "Remover tarefa" onclick="remove('${taskId}')">️❌</button>
+    </li>`
 
-  li.innerHTML = `
-      <h2>${taskTitle}</h2>
-      <p>${taskDescription}</p>
-  `
-  const editButton = document.createElement('button')
-  editButton.textContent = '✏️'
-  editButton.title = 'Editar tarefa'
-  editButton.classList.add('editButton')
-  li.appendChild(editButton)
-
-  taskList.appendChild(li)
-
-  // Salvar tarefas no localStorage
   const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
-  tasks.push({ title: taskTitle, description: taskDescription})
+  tasks.push({ id: taskId, title: taskTitle, description: taskDescription })
   localStorage.setItem(taskKey, JSON.stringify(tasks))
 
   form.reset()
-  addDialogToEditButton(tasks.length - 1) // começa pelo último adicionado
+}
+
+function remove(id) {
+  const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
+  const taskIndex = tasks.findIndex(task => task.id == id)
+  tasks.splice(taskIndex, 1)
+  localStorage.setItem(taskKey, JSON.stringify(tasks))
+  document.getElementById(id).remove()
 }
 
 // Carregar tarefas do localStorage ao recarregar a página
@@ -39,7 +39,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
   const taskList = document.querySelector('#taskList')
   taskList.innerHTML = tasks
-    .map((task) => `<li><h2>${task.title}</h2><p>${task.description}</p><button class = "editButton" title = "Editar tarefa">✏️</button></li>`)
+    .map((task) => `<li id="${task.id}"><h2>Título: ${task.title}</h2>
+    <p>Descrição: ${task.description}</p>
+    <button class = "editButton" title = "Editar tarefa" onclick="dialog('${task.id}', '${task.title}', '${task.description}')">✏️</button>
+    <button class = "removeButton" title = "Remover tarefa" onclick="remove('${task.id}')">️❌</button>
+    </li>`)
     .join('')
-    addDialogToEditButton(0) // começa a partir do primeiro botão
 })

@@ -78,11 +78,26 @@ button {
 
 .editButton {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 55px;
+  top: 10px;
   border-radius: 5px;
   background-color: #676767;
   padding: 3px;
+  width: 35px;
+  height: 35px;
+  border: solid 1px #ccc;
+}
+
+.removeButton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 5px;
+  background-color: #676767;
+  padding: 3px;
+  width: 35px;
+  height: 35px;
+  border: solid 1px #ccc;
 }
 
 ul {
